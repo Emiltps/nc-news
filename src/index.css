@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #000000;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #ffbe0b;
 }
 
 body {
@@ -48,11 +48,38 @@ h1 {
   gap: 1em;
   flex-wrap: wrap;
 }
+
 .article-card img {
   max-width: 400px;
   border-radius: 4px;
 }
 
+.single-article {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  background-color: #dfebec;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  gap: 1em;
+  flex-wrap: wrap;
+}
+.single-article img {
+  max-width: 400px;
+  border-radius: 4px;
+}
+.article-content {
+  flex: 1;
+  min-width: 0;
+}
+.article-body {
+  flex-basis: 100%;
+  margin-top: 1em;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
