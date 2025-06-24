@@ -18,7 +18,7 @@ export default function CommentPage() {
       .catch((err) => console.error(err));
   }, [article_id]);
   if (isLoading) return <p>Loading comments...</p>;
-  else if (comments.length === 0) return <p>No comments...</p>;
+  else if (!comments || comments.length === 0) return <p>No comments...</p>;
 
   return (
     <section className="comments-list">

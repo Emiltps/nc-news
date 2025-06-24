@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import VoteButtons from "./VoteButtons";
+import { useNavigate } from "react-router-dom";
 
 export default function SingleArticle() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [voteChange, setVoteChange] = useState(0);
   const { article_id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://news-backend-ul66.onrender.com/api/articles/${article_id}`)
@@ -21,21 +23,28 @@ export default function SingleArticle() {
   else if (!article) return <p>Article not found...</p>;
 
   return (
-    <article className="single-article">
-      <img src={article.article_img_url} alt={`Image for ${article.title}`} />
-      <div className="article-content">
-        <h1>{article.title}</h1>
-        <p>Topic: {article.topic}</p>
-        <p>Author: {article.author}</p>
-        <p>Published: {article.created_at.substring(0, 10)}</p>
-        <p>
-          Comments: {article.comment_count}
-          <VoteButtons article_id={article_id} currentVotes={article.votes} />
-        </p>
-        <div className="article-body">
-          <p>{article.body}</p>
+    <>
+      <article className="single-article">
+        <img src={article.article_img_url} alt={`Image for ${article.title}`} />
+        <div className="article-content">
+          <h1>{article.title}</h1>
+          <p>Topic: {article.topic}</p>
+          <p>Author: {article.author}</p>
+          <p>Published: {article.created_at.substring(0, 10)}</p>
+          <p>
+            Comments: {article.comment_count}
+            <VoteButtons article_id={article_id} currentVotes={article.votes} />
+          </p>
+          <div className="article-body">
+            <p>{article.body}</p>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+      <button
+        onClick={() => navigate(`/api/articles/${article_id}/add-comment`)}
+      >
+        Click here to add a new comment
+      </button>
+    </>
   );
 }
