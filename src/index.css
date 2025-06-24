@@ -95,6 +95,9 @@ h1 {
   flex-basis: 100%;
   margin-top: 1em;
 }
+.vote-button {
+  background-color: rgb(241, 155, 74);
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;

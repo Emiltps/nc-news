@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import VoteButtons from "./VoteButtons";
 
 export default function SingleArticle() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [voteChange, setVoteChange] = useState(0);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -27,7 +29,8 @@ export default function SingleArticle() {
         <p>Author: {article.author}</p>
         <p>Published: {article.created_at.substring(0, 10)}</p>
         <p>
-          Votes:{article.votes} | Comments: {article.comment_count}
+          Comments: {article.comment_count}
+          <VoteButtons article_id={article_id} currentVotes={article.votes} />
         </p>
         <div className="article-body">
           <p>{article.body}</p>

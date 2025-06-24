@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <header>
-      <h1>Chat&Comment</h1>
+      <Link to={`/`}>
+        <h1>Chat&Comment</h1>
+      </Link>
     </header>
   );
 }
