@@ -7,6 +7,7 @@ export default function SingleArticle() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [voteChange, setVoteChange] = useState(0);
+  const [showForm, setShowForm] = useState(false);
   const { article_id } = useParams();
   const navigate = useNavigate();
 
@@ -31,19 +32,15 @@ export default function SingleArticle() {
           <p>Topic: {article.topic}</p>
           <p>Author: {article.author}</p>
           <p>Published: {article.created_at.substring(0, 10)}</p>
-          <p>
-            Comments: {article.comment_count}
-            <VoteButtons article_id={article_id} currentVotes={article.votes} />
-          </p>
+          <p>Comments: {article.comment_count} </p>
+          <VoteButtons article_id={article_id} currentVotes={article.votes} />
           <div className="article-body">
             <p>{article.body}</p>
           </div>
         </div>
       </article>
-      <button
-        onClick={() => navigate(`/api/articles/${article_id}/add-comment`)}
-      >
-        Click here to add a new comment
+      <button onClick={() => setShowForm((prev) => !prev)}>
+        {showForm ? "Hide comment form" : "Click here to add a new comment"}
       </button>
     </>
   );
