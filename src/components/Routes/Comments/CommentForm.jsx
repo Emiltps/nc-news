@@ -4,7 +4,7 @@ function CommentForm({ article_id, addComment }) {
   const [body, setBody] = useState("");
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState(null);
-
+  console.log({ article_id, username, body });
   function handleSubmit(e) {
     e.preventDefault();
     if (!username || !body) {
@@ -18,9 +18,13 @@ function CommentForm({ article_id, addComment }) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, body }),
+        body: JSON.stringify({ article_id, username, body }),
       }
     )
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to post comment");
+        return res.json();
+      })
       .then((data) => {
         addComment(data.comment); // Update parent comment list
         setBody("");
@@ -49,6 +53,7 @@ function CommentForm({ article_id, addComment }) {
           placeholder="e.g. type your comment here"
         />
       </label>
+      <button type="submit">Post comment</button>
     </form>
   );
 }

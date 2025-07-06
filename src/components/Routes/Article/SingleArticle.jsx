@@ -7,7 +7,7 @@ export default function SingleArticle() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [voteChange, setVoteChange] = useState(0);
-  const [showForm, setShowForm] = useState(false);
+
   const { article_id } = useParams();
   const navigate = useNavigate();
 
@@ -39,9 +39,6 @@ export default function SingleArticle() {
           </div>
         </div>
       </article>
-      <button onClick={() => setShowForm((prev) => !prev)}>
-        {showForm ? "Hide comment form" : "Click here to add a new comment"}
-      </button>
     </>
   );
 }
